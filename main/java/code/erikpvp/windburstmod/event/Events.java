@@ -32,22 +32,19 @@ public class Events {
         if (enchantLevel > 0) {
             Entity target = event.getTarget();
             Vec3 hitPos = target.position();
-
-            // Radius
+
             double radius = 5.0D;
             AABB area = new AABB(
                     hitPos.x - radius, hitPos.y - radius, hitPos.z - radius,
                     hitPos.x + radius, hitPos.y + radius, hitPos.z + radius
             );
-
-            // Alle Mobs im Umkreis wegschleudern
+
             for (Entity e : level.getEntities(player, area, ent -> ent instanceof LivingEntity && ent != player)) {
                 Vec3 kb = e.position().subtract(hitPos).normalize().scale(1.5).add(0, 0.6, 0);
                 e.setDeltaMovement(kb);
                 e.hurtMarked = true;
             }
-
-            // Spieler selbst hochlaunchen -> Stärke abhängig von Enchant-Level
+
             double launchY = switch (enchantLevel) {
                 case 1 -> 0.8D;  // Wind Burst I
                 case 2 -> 1.2D;  // Wind Burst II
