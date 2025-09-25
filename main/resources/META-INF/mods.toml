@@ -1,0 +1,8 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+[[mods]]
+modId="windburst"
+version="1.0 Full Release"
+displayName="Wind Burst Mod"
+authors="ErikPvP"
